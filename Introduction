@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tanışmak İçin Heyecanlıyım!</title>
+    <style>
+        body {
+            margin: 0; padding: 0; overflow: hidden;
+            background: #eef2f3;
+            font-family: 'Segoe UI', sans-serif;
+            display: flex; justify-content: center; align-items: center; height: 100vh;
+        }
+
+        /* Kartı küçülttük ve biraz şeffaflaştırdık */
+        .profile-card {
+            text-align: center; 
+            z-index: 5; /* Balonların bazen önünden bazen arkasından geçmesi için ideal */
+            background: rgba(255, 255, 255, 0.9); 
+            padding: 1px;
+            border-radius: 15px; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border-top: 5px solid #0077b5;
+            width: 80%;
+            max-width: 200px; /* Daha küçük bir kart */
+            backdrop-filter: blur(10px);
+        }
+
+        h1 { color: #2d3436; font-size: 1.4rem; margin: 0; }
+        p { color: #636e72; font-size: 0.9rem; line-height: 1.4; }
+        
+        .btn {
+            display: inline-block; padding: 10px 20px;
+            background: #0077b5; color: white;
+            text-decoration: none; border-radius: 5px;
+            margin-top: 10px; font-size: 0.85rem; font-weight: bold;
+        }
+
+        /* Balonların içine metin sığması için ayarlar */
+        .skill-balloon {
+            position: absolute; bottom: -100px;
+            padding: 10px 15px; 
+            border-radius: 25px;
+            color: white; 
+            font-weight: bold; 
+            font-size: 0.8rem;
+            animation: floatUp 8s linear infinite;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            white-space: nowrap;
+            z-index: 1; /* Kartın arkasından süzülürler */
+        }
+
+        @keyframes floatUp {
+            0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-120vh) rotate(15deg); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="profile-card">
+        <h1>Merhaba! 👋</h1>
+        <p>Yapay zeka ve Veri bilimi yeteneklerim ,multidisipliner düşünme kabiliyetim,yaratıcı,araştırmacı, geliştirici kimliğim ve güçlü iletişim, takım çalışması yapabilen sosyal becerilerimle şirketinize değer katmaya hazırım
+</p>
+        <a href="https://github.com/seydanur-hemithea" target="_blank" class="btn">GitHub Profilim</a>
+    </div>
+
+    <script>
+        const mySkills = ['R', 'GitHub', 'Takım Çalışması', 'Dijital Beşeri Bilimler', 'Hızlı Öğrenme', 'Problem Çözme', 'Analitik Düşünme','Python','Yapay zeka','Veri Bilimi','Panel Veri Analizi','Big Data','SQL','Kafka','Elasticsearch','Kibana','Spark','MongoDB','PostgreSQL','Makine öğrenmesi','Derin öğrenme','Kotlin','c#','Andoid studio','Visual Studio','SPSS'];
+        const colors = ['#0984e3', '#00cec9', '#6c5ce7', '#74b9ff', '#00b894'];
+
+        function createSkillBalloon() {
+            const skill = document.createElement('div');
+            skill.className = 'skill-balloon';
+            
+            const text = mySkills[Math.floor(Math.random() * mySkills.length)];
+            const color = colors[Math.floor(Math.random() * colors.length)];
+            const leftPos = Math.random() * 90;
+            const duration = Math.random() * (10 - 7) + 7;
+
+            skill.innerText = text;
+            skill.style.left = leftPos + 'vw';
+            skill.style.backgroundColor = color;
+            skill.style.animationDuration = duration + 's';
+            
+            document.body.appendChild(skill);
+            setTimeout(() => { skill.remove(); }, duration * 1000);
+        }
+
+        setInterval(createSkillBalloon, 1000); // Balon sayısını biraz azalttık ki göz yormasın
+    </script>
+</body>
+</html>
