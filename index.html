@@ -122,5 +122,50 @@
 
         setInterval(createSkillBalloon, 1000); // Balon sayısını biraz azalttık ki göz yormasın
     </script>
+    <div id="chatbot-container" style="position: fixed; bottom: 20px; right: 20px; z-index: 10001; font-family: sans-serif;">
+    
+    <div id="chatbot-button" onclick="toggleChat()" style="
+        width: 60px; height: 60px; 
+        background: linear-gradient(135deg, #00d4ff, #0072ff); 
+        border-radius: 50%; 
+        display: flex; align-items: center; justify-content: center; 
+        cursor: pointer; box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        transition: transform 0.3s;">
+        <span style="font-size: 30px;">🤖</span>
+    </div>
+
+    <div id="chatbot-window" style="
+        display: none; 
+        position: absolute; bottom: 80px; right: 0; 
+        width: 350px; height: 500px; 
+        background: white; border-radius: 15px; 
+        overflow: hidden; box-shadow: 0 5px 25px rgba(0,0,0,0.2);
+        border: 1px solid #ddd;">
+        
+        <div style="background: #0072ff; color: white; padding: 15px; display: flex; justify-content: space-between; align-items: center;">
+            <span style="font-weight: bold;">Hemithea NLP Assistant</span>
+            <span onclick="toggleChat()" style="cursor: pointer; font-size: 20px;">×</span>
+        </div>
+
+        <iframe src="https://websydnrcvpy-48f89gufubueyh856j2pjq.streamlit.app/?embed=true" 
+                style="width: 100%; height: calc(100% - 50px); border: none;">
+        </iframe>
+    </div>
+</div>
+
+<script>
+    function toggleChat() {
+        var window = document.getElementById('chatbot-window');
+        var button = document.getElementById('chatbot-button');
+        if (window.style.display === 'none') {
+            window.style.display = 'block';
+            button.style.transform = 'rotate(90deg)';
+        } else {
+            window.style.display = 'none';
+            button.style.transform = 'rotate(0deg)';
+        }
+    }
+</script>
+
 </body>
 </html>
